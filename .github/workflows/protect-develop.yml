@@ -1,0 +1,17 @@
+name: Protect Develop Branch
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  validate-source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch
+        run: |
+          if [[ "$GITHUB_HEAD_REF" != feature/* && "$GITHUB_HEAD_REF" != hotfix/* ]]; then
+            echo "Pull requests to main must come from feature/* or hotfix/* branches."
+            exit 1
+          fi
