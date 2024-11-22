@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Check source branch
         run: |
-          if [[ "$GITHUB_HEAD_REF" != feature/* && "$GITHUB_HEAD_REF" != hotfix/* ]]; then
-            echo "Pull requests to main must come from feature/* or hotfix/* branches."
+          if [[ "$GITHUB_HEAD_REF" != release/* && "$GITHUB_HEAD_REF" != hotfix/* && "$GITHUB_HEAD_REF" != feature/* ]]; then
+            echo "Pull requests to develop must come from release/* or hotfix/* or feature/* branches."
             exit 1
           fi
